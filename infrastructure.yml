@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # Main Backend API
+  api:
+    build: .
+    container_name: carboniq_backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8080"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/carboniq
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=super_secret_enterprise_key_change_in_prod
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_REGION=ap-south-1
+    depends_on:
+      - db
+      - redis
+
+  # PostgreSQL Database (Primary Storage)
+  db:
+    image: postgres:15-alpine
+    container_name: carboniq_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=carboniq
+    ports:
+      - "5432:5432"
+
+  # Redis (Caching & Task Queue)
+  redis:
+    image: redis:7-alpine
+    container_name: carboniq_redis
+    ports:
+      - "6379:6379"
+
+  # Celery Worker (Async Tasks: OCR, Reports)
+  worker:
+    build: .
+    command: celery -A app.main.celery worker --loglevel=info
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/carboniq
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - api
+      - redis
+
+volumes:
+  postgres_data:
