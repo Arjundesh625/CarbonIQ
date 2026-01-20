@@ -1,606 +1,581 @@
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarbonIQ AI - Carbon Accounting Platform</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Chart.js (pinned) -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CarbonIQ AI - Carbon Accounting Platform</title>
+<link href="style.css" rel="stylesheet"/>
+<!-- Chart.js (pinned) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <h1>CarbonIQ AI</h1>
-                    <span class="tagline">Intelligent Carbon Accounting</span>
-                </div>
-                <nav class="nav">
-                    <button class="nav-link active" data-section="dashboard">Dashboard</button>
-                    <button class="nav-link" data-section="upload">Upload Data</button>
-                    <button class="nav-link" data-section="recommendations">Recommendations</button>
-                    <button class="nav-link" data-section="reports">Reports</button>
-                </nav>
-                <div class="user-profile">
-                    <div class="avatar">TC</div>
-                    <span>TechCorp Admin</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <!-- Dashboard Section -->
-            <section id="dashboard" class="section active">
-                <div class="section-header">
-                    <h2>Carbon Emissions Dashboard</h2>
-                    <div class="company-info">
-                        <span>TechCorp Industries • Manufacturing • 1,250 employees</span>
-                    </div>
-                </div>
-
-                <!-- Key Metrics -->
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-icon">🌍</div>
-                        <div class="metric-content">
-                            <h3>Total CO₂ Emissions</h3>
-                            <div class="metric-value">8,642.5</div>
-                            <div class="metric-unit">tonnes</div>
-                            <div class="metric-change negative">-3.2% vs last month</div>
-                        </div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">📊</div>
-                        <div class="metric-content">
-                            <h3>Compliance Score</h3>
-                            <div class="metric-value">87</div>
-                            <div class="metric-unit">/ 100</div>
-                            <div class="metric-change positive">+2 points</div>
-                        </div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">🎯</div>
-                        <div class="metric-content">
-                            <h3>Reduction Target</h3>
-                            <div class="metric-value">62%</div>
-                            <div class="metric-unit">progress</div>
-                            <div class="metric-change positive">25% target by 2030</div>
-                        </div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">💡</div>
-                        <div class="metric-content">
-                            <h3>AI Recommendations</h3>
-                            <div class="metric-value">4</div>
-                            <div class="metric-unit">active</div>
-                            <div class="metric-change">Potential 3.2k tonnes reduction</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Charts Row -->
-                <div class="charts-grid">
-                    <div class="chart-container">
-                        <div class="chart-header">
-                            <h3>Emissions by Scope</h3>
-                        </div>
-                        <div class="chart-wrapper" style="position: relative; height: 300px;">
-                            <canvas id="scopeChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <div class="chart-header">
-                            <h3>Monthly Emissions Trend</h3>
-                        </div>
-                        <div class="chart-wrapper" style="position: relative; height: 300px;">
-                            <canvas id="trendChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Categories Chart -->
-                <div class="chart-container full-width">
-                    <div class="chart-header">
-                        <h3>Emissions by Category</h3>
-                    </div>
-                    <div class="chart-wrapper" style="position: relative; height: 300px;">
-                        <canvas id="categoryChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Recent Activity and Quick Actions -->
-                <div class="dashboard-bottom">
-                    <div class="activity-feed">
-                        <h3>Recent Activity</h3>
-                        <div class="activity-list">
-                            <div class="activity-item">
-                                <div class="activity-icon report">📄</div>
-                                <div class="activity-content">
-                                    <div class="activity-text">Monthly emissions report generated</div>
-                                    <div class="activity-time">Sep 18, 2025</div>
-                                </div>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-icon insight">💡</div>
-                                <div class="activity-content">
-                                    <div class="activity-text">AI detected 12% efficiency improvement opportunity</div>
-                                    <div class="activity-time">Sep 17, 2025</div>
-                                </div>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-icon upload">📁</div>
-                                <div class="activity-content">
-                                    <div class="activity-text">Electricity bill processed and categorized</div>
-                                    <div class="activity-time">Sep 16, 2025</div>
-                                </div>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-icon integration">🔗</div>
-                                <div class="activity-content">
-                                    <div class="activity-text">Transportation data uploaded via API</div>
-                                    <div class="activity-time">Sep 15, 2025</div>
-                                </div>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-icon offset">🌱</div>
-                                <div class="activity-content">
-                                    <div class="activity-text">Offset purchase completed: 500 tCO₂e</div>
-                                    <div class="activity-time">Sep 14, 2025</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="quick-actions">
-                        <h3>Quick Actions</h3>
-                        <button class="btn btn--primary" onclick="showSection('upload')">Upload New Data</button>
-                        <button class="btn btn--outline" onclick="showSection('recommendations')">View Recommendations</button>
-                        <button class="btn btn--outline" onclick="generateReport()">Generate Report</button>
-                        <button class="btn btn--secondary">Schedule AI Analysis</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Upload Data Section -->
-            <section id="upload" class="section">
-                <div class="section-header">
-                    <h2>AI-Powered Data Upload</h2>
-                    <p>Upload your documents and let our AI extract and categorize emissions data automatically</p>
-                </div>
-
-                <div class="upload-container">
-                    <div class="upload-zone" id="uploadZone">
-                        <div class="upload-icon">📄</div>
-                        <h3>Drag & drop files here</h3>
-                        <p>or click to browse</p>
-                        <div class="supported-formats">
-                            <span class="format-tag">PDF</span>
-                            <span class="format-tag">Excel</span>
-                            <span class="format-tag">CSV</span>
-                            <span class="format-tag">Images</span>
-                        </div>
-                        <input type="file" id="fileInput" multiple accept=".pdf,.xlsx,.xls,.csv,.png,.jpg,.jpeg" hidden>
-                    </div>
-
-                    <div class="processing-section" id="processingSection" style="display: none;">
-                        <h3>AI Processing Status</h3>
-                        <div class="processing-item">
-                            <div class="file-info">
-                                <span class="file-name">electricity-bill-sept-2025.pdf</span>
-                                <span class="file-size">2.4 MB</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="progressFill"></div>
-                            </div>
-                            <div class="processing-status" id="processingStatus">Analyzing document...</div>
-                        </div>
-                    </div>
-
-                    <div class="extraction-results" id="extractionResults" style="display: none;">
-                        <h3>AI Extraction Results</h3>
-                        <div class="result-card">
-                            <div class="result-header">
-                                <h4>Document: Electricity Bill - September 2025</h4>
-                                <span class="confidence-score">96% Confidence</span>
-                            </div>
-                            <div class="extracted-data">
-                                <div class="data-point">
-                                    <span class="label">Energy Consumption:</span>
-                                    <span class="value">45,230 kWh</span>
-                                </div>
-                                <div class="data-point">
-                                    <span class="label">CO₂ Emissions:</span>
-                                    <span class="value">32.4 tonnes</span>
-                                </div>
-                                <div class="data-point">
-                                    <span class="label">Category:</span>
-                                    <span class="value">Scope 2 - Purchased Electricity</span>
-                                </div>
-                                <div class="data-point">
-                                    <span class="label">Location:</span>
-                                    <span class="value">Bangalore Facility</span>
-                                </div>
-                            </div>
-                            <div class="result-actions">
-                                <button class="btn btn--primary">Approve & Add</button>
-                                <button class="btn btn--outline">Review Details</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="upload-history">
-                    <h3>Upload History</h3>
-                    <div class="history-table">
-                        <div class="table-row header">
-                            <div class="col">File Name</div>
-                            <div class="col">Date Uploaded</div>
-                            <div class="col">Status</div>
-                            <div class="col">CO₂ Extracted</div>
-                            <div class="col">Actions</div>
-                        </div>
-                        <div class="table-row">
-                            <div class="col">transportation-invoice-aug-2025.pdf</div>
-                            <div class="col">Sep 15, 2025</div>
-                            <div class="col"><span class="status status--success">Processed</span></div>
-                            <div class="col">156.7 tonnes</div>
-                            <div class="col"><button class="btn btn--sm btn--outline">View Details</button></div>
-                        </div>
-                        <div class="table-row">
-                            <div class="col">energy-audit-2025.xlsx</div>
-                            <div class="col">Sep 12, 2025</div>
-                            <div class="col"><span class="status status--success">Processed</span></div>
-                            <div class="col">89.3 tonnes</div>
-                            <div class="col"><button class="btn btn--sm btn--outline">View Details</button></div>
-                        </div>
-                        <div class="table-row">
-                            <div class="col">waste-management-report.csv</div>
-                            <div class="col">Sep 10, 2025</div>
-                            <div class="col"><span class="status status--warning">Review Required</span></div>
-                            <div class="col">23.1 tonnes</div>
-                            <div class="col"><button class="btn btn--sm btn--primary">Review</button></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Recommendations Section -->
-            <section id="recommendations" class="section">
-                <div class="section-header">
-                    <h2>AI-Generated Recommendations</h2>
-                    <p>Personalized carbon reduction strategies with ROI calculations</p>
-                </div>
-
-                <div class="recommendations-grid">
-                    <div class="recommendation-card high-priority">
-                        <div class="priority-badge high">High Priority</div>
-                        <h3>LED Lighting Upgrade</h3>
-                        <div class="category">Energy Efficiency</div>
-                        <p>Install LED lighting across all facilities to reduce electricity consumption by 15%</p>
-                        <div class="metrics-row">
-                            <div class="metric">
-                                <span class="label">Investment</span>
-                                <span class="value">$125,000</span>
-                            </div>
-                            <div class="metric">
-                                <span class="label">Annual Savings</span>
-                                <span class="value">$280,000</span>
-                            </div>
-                            <div class="metric">
-                                <span class="label">Payback</span>
-                                <span class="value">5.4 months</span>
-                            </div>
-                            <div class="metric">
-                                <span class="label">CO₂ Reduction</span>
-                                <span class="value">487.2 tonnes</span>
-                            </div>
-                        </div>
-                        <button class="btn btn--primary btn--full-width">Implement Strategy</button>
-                    </div>
-
-                    <div class="recommendation-card high-priority">
-                        <div class="priority-badge high">High Priority</div>
-                        <h3>Solar Panel Installation</h3>
-                        <div class="category">Renewable Energy</div>
-                        <p>Solar panel installation on Bangalore facility to generate 35% of facility energy from renewable sources</p>
-                        <div class="metrics-row">
-                            <div class="metric">
-                                <span class="label">Investment</span>
-                                <span class="value">$450,000</span>
-                            </div>
-                            <div class="metric">
-                                <span class="label">Annual Savings</span>
-                                <span class="value">$95,000</span>
-                            </div>
-                            <div class="metric">
-                                <span class="label">Payback</span>
-                                <span class="value">4.7 years</span>
-                            </div>
-                            <div class="metric">
-                                <span class="label">CO₂ Reduction</span>
-                                <span class="value">1,136.7 tonnes</span>
-                            </div>
-                        </div>
-                        <button class="btn btn--primary btn--full-width">Implement Strategy</button>
-                    </div>
-
-                    <div class="recommendation-card medium-priority">
-                        <div class="priority-badge medium">Medium Priority</div>
-                        <h3>Electric Vehicle Fleet</h3>
-                        <div class="category">Transportation</div>
-                        <p>Transition to electric vehicle fleet to achieve 60% reduction in fleet emissions</p>
-                        <div class="metrics-row">
-                            <div class="metric">
-                                <span class="label">Investment</span>
-                                <span class="value">$320,000</span>
-                            </div>
-                            <div class="metric">
-                                <span class="label">Annual Savings</span>
-                                <span class="value">$45,000</span>
-                            </div>
-                            <div class="metric">
-                                <span class="label">Payback</span>
-                                <span class="value">7.1 years</span>
-                            </div>
-                            <div class="metric">
-                                <span class="label">CO₂ Reduction</span>
-                                <span class="value">1,111.4 tonnes</span>
-                            </div>
-                        </div>
-                        <button class="btn btn--outline btn--full-width">Learn More</button>
-                    </div>
-
-                    <div class="recommendation-card low-priority">
-                        <div class="priority-badge low">Low Priority</div>
-                        <h3>Recycling Program</h3>
-                        <div class="category">Waste Management</div>
-                        <p>Implement comprehensive recycling program to achieve 40% waste reduction</p>
-                        <div class="metrics-row">
-                            <div class="metric">
-                                <span class="label">Investment</span>
-                                <span class="value">$25,000</span>
-                            </div>
-                            <div class="metric">
-                                <span class="label">Annual Savings</span>
-                                <span class="value">$18,000</span>
-                            </div>
-                            <div class="metric">
-                                <span class="label">Payback</span>
-                                <span class="value">1.4 years</span>
-                            </div>
-                            <div class="metric">
-                                <span class="label">CO₂ Reduction</span>
-                                <span class="value">217.5 tonnes</span>
-                            </div>
-                        </div>
-                        <button class="btn btn--outline btn--full-width">Learn More</button>
-                    </div>
-                </div>
-
-                <!-- Carbon Offset Marketplace -->
-                <div class="offset-marketplace">
-                    <h3>Carbon Offset Marketplace</h3>
-                    <div class="offset-projects">
-                        <div class="offset-card">
-                            <div class="offset-header">
-                                <h4>Rajasthan Wind Farm</h4>
-                                <div class="rating">AAA</div>
-                            </div>
-                            <div class="offset-details">
-                                <p>Large-scale wind energy project reducing grid emissions</p>
-                                <div class="offset-info">
-                                    <span>📍 India</span>
-                                    <span>🔒 Gold Standard</span>
-                                    <span>💨 Renewable Energy</span>
-                                </div>
-                            </div>
-                            <div class="offset-pricing">
-                                <span class="price">$12/tCO₂e</span>
-                                <span class="available">50,000 tonnes available</span>
-                            </div>
-                            <button class="btn btn--primary">Purchase Offsets</button>
-                        </div>
-
-                        <div class="offset-card">
-                            <div class="offset-header">
-                                <h4>Kerala Reforestation</h4>
-                                <div class="rating">AA+</div>
-                            </div>
-                            <div class="offset-details">
-                                <p>Community-based forest restoration project</p>
-                                <div class="offset-info">
-                                    <span>📍 India</span>
-                                    <span>🔒 VCS</span>
-                                    <span>🌳 Forestry</span>
-                                </div>
-                            </div>
-                            <div class="offset-pricing">
-                                <span class="price">$8/tCO₂e</span>
-                                <span class="available">25,000 tonnes available</span>
-                            </div>
-                            <button class="btn btn--primary">Purchase Offsets</button>
-                        </div>
-
-                        <div class="offset-card">
-                            <div class="offset-header">
-                                <h4>Biogas Plant Gujarat</h4>
-                                <div class="rating">AA</div>
-                            </div>
-                            <div class="offset-details">
-                                <p>Converting agricultural waste to clean energy</p>
-                                <div class="offset-info">
-                                    <span>📍 India</span>
-                                    <span>🔒 CDM</span>
-                                    <span>♻️ Waste Management</span>
-                                </div>
-                            </div>
-                            <div class="offset-pricing">
-                                <span class="price">$15/tCO₂e</span>
-                                <span class="available">15,000 tonnes available</span>
-                            </div>
-                            <button class="btn btn--primary">Purchase Offsets</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Reports Section -->
-            <section id="reports" class="section">
-                <div class="section-header">
-                    <h2>Compliance Reports</h2>
-                    <p>Generate comprehensive reports for various compliance frameworks</p>
-                </div>
-
-                <div class="report-generator">
-                    <div class="generator-card">
-                        <h3>Generate New Report</h3>
-                        <form class="report-form">
-                            <div class="form-group">
-                                <label class="form-label">Reporting Framework</label>
-                                <select class="form-control" id="frameworkSelect">
-                                    <option value="gri">GRI Standards</option>
-                                    <option value="cdp">CDP Climate</option>
-                                    <option value="tcfd">TCFD</option>
-                                    <option value="sbti">SBTi</option>
-                                    <option value="iso">ISO 14064</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Reporting Period</label>
-                                <select class="form-control">
-                                    <option value="2025">2025 (Current)</option>
-                                    <option value="2024">2024</option>
-                                    <option value="2023">2023</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Report Type</label>
-                                <select class="form-control">
-                                    <option value="annual">Annual Report</option>
-                                    <option value="quarterly">Quarterly Report</option>
-                                    <option value="custom">Custom Report</option>
-                                </select>
-                            </div>
-                            <button type="button" class="btn btn--primary btn--full-width" onclick="generateReport()">Generate Report</button>
-                        </form>
-                    </div>
-
-                    <div class="compliance-status">
-                        <h3>Framework Compliance Status</h3>
-                        <div class="compliance-grid">
-                            <div class="compliance-item">
-                                <div class="framework-name">GRI Standards</div>
-                                <span class="status status--success">Compliant</span>
-                                <div class="last-updated">Updated Sep 2025</div>
-                            </div>
-                            <div class="compliance-item">
-                                <div class="framework-name">CDP Climate</div>
-                                <span class="status status--warning">In Progress</span>
-                                <div class="last-updated">Updated Aug 2025</div>
-                            </div>
-                            <div class="compliance-item">
-                                <div class="framework-name">TCFD</div>
-                                <span class="status status--success">Compliant</span>
-                                <div class="last-updated">Updated Sep 2025</div>
-                            </div>
-                            <div class="compliance-item">
-                                <div class="framework-name">SBTi</div>
-                                <span class="status status--info">Pending</span>
-                                <div class="last-updated">Updated Jul 2025</div>
-                            </div>
-                            <div class="compliance-item">
-                                <div class="framework-name">ISO 14064</div>
-                                <span class="status status--success">Compliant</span>
-                                <div class="last-updated">Updated Aug 2025</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="report-history">
-                    <h3>Generated Reports</h3>
-                    <div class="history-table">
-                        <div class="table-row header">
-                            <div class="col">Report Name</div>
-                            <div class="col">Framework</div>
-                            <div class="col">Generated</div>
-                            <div class="col">Status</div>
-                            <div class="col">Actions</div>
-                        </div>
-                        <div class="table-row">
-                            <div class="col">Annual Carbon Report 2025</div>
-                            <div class="col">GRI Standards</div>
-                            <div class="col">Sep 18, 2025</div>
-                            <div class="col"><span class="status status--success">Ready</span></div>
-                            <div class="col">
-                                <button class="btn btn--sm btn--outline">Download PDF</button>
-                                <button class="btn btn--sm btn--secondary">Share</button>
-                            </div>
-                        </div>
-                        <div class="table-row">
-                            <div class="col">Q3 2025 Climate Disclosure</div>
-                            <div class="col">CDP Climate</div>
-                            <div class="col">Sep 15, 2025</div>
-                            <div class="col"><span class="status status--warning">In Review</span></div>
-                            <div class="col">
-                                <button class="btn btn--sm btn--outline">Preview</button>
-                                <button class="btn btn--sm btn--primary">Complete Review</button>
-                            </div>
-                        </div>
-                        <div class="table-row">
-                            <div class="col">TCFD Risk Assessment 2025</div>
-                            <div class="col">TCFD</div>
-                            <div class="col">Sep 12, 2025</div>
-                            <div class="col"><span class="status status--success">Ready</span></div>
-                            <div class="col">
-                                <button class="btn btn--sm btn--outline">Download PDF</button>
-                                <button class="btn btn--sm btn--secondary">Share</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Report Generation Modal -->
-    <div id="reportModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Generating Report...</h3>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="report-progress">
-                    <div class="progress-step active">
-                        <div class="step-icon">✓</div>
-                        <div class="step-text">Collecting emissions data</div>
-                    </div>
-                    <div class="progress-step active">
-                        <div class="step-icon">✓</div>
-                        <div class="step-text">AI analysis and categorization</div>
-                    </div>
-                    <div class="progress-step active">
-                        <div class="step-icon">⏳</div>
-                        <div class="step-text">Generating compliance report</div>
-                    </div>
-                    <div class="progress-step">
-                        <div class="step-icon">◯</div>
-                        <div class="step-text">Quality validation</div>
-                    </div>
-                </div>
-                <div class="progress-bar-modal">
-                    <div class="progress-fill-modal" id="modalProgressFill"></div>
-                </div>
-                <div class="progress-text">Processing... 65% complete</div>
-            </div>
-        </div>
-    </div>
-
-    <script src="app.js"></script>
+<!-- Header -->
+<header class="header">
+<div class="container">
+<div class="header-content">
+<div class="logo">
+<h1>CarbonIQ AI</h1>
+<span class="tagline">Intelligent Carbon Accounting</span>
+</div>
+<nav class="nav">
+<button class="nav-link active" data-section="dashboard">Dashboard</button>
+<button class="nav-link" data-section="upload">Upload Data</button>
+<button class="nav-link" data-section="recommendations">Recommendations</button>
+<button class="nav-link" data-section="reports">Reports</button>
+</nav>
+<div class="user-profile">
+<div class="avatar">TC</div>
+<span>TechCorp Admin</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="main-content">
+<div class="container">
+<!-- Dashboard Section -->
+<section class="section active" id="dashboard">
+<div class="section-header">
+<h2>Carbon Emissions Dashboard</h2>
+<div class="company-info">
+<span>TechCorp Industries • Manufacturing • 1,250 employees</span>
+</div>
+</div>
+<!-- Key Metrics -->
+<div class="metrics-grid">
+<div class="metric-card">
+<div class="metric-icon">🌍</div>
+<div class="metric-content">
+<h3>Total CO₂ Emissions</h3>
+<div class="metric-value">8,642.5</div>
+<div class="metric-unit">tonnes</div>
+<div class="metric-change negative">-3.2% vs last month</div>
+</div>
+</div>
+<div class="metric-card">
+<div class="metric-icon">📊</div>
+<div class="metric-content">
+<h3>Compliance Score</h3>
+<div class="metric-value">87</div>
+<div class="metric-unit">/ 100</div>
+<div class="metric-change positive">+2 points</div>
+</div>
+</div>
+<div class="metric-card">
+<div class="metric-icon">🎯</div>
+<div class="metric-content">
+<h3>Reduction Target</h3>
+<div class="metric-value">62%</div>
+<div class="metric-unit">progress</div>
+<div class="metric-change positive">25% target by 2030</div>
+</div>
+</div>
+<div class="metric-card">
+<div class="metric-icon">💡</div>
+<div class="metric-content">
+<h3>AI Recommendations</h3>
+<div class="metric-value">4</div>
+<div class="metric-unit">active</div>
+<div class="metric-change">Potential 3.2k tonnes reduction</div>
+</div>
+</div>
+</div>
+<!-- Charts Row -->
+<div class="charts-grid">
+<div class="chart-container">
+<div class="chart-header">
+<h3>Emissions by Scope</h3>
+</div>
+<div class="chart-wrapper" style="position: relative; height: 300px;">
+<canvas id="scopeChart"></canvas>
+</div>
+</div>
+<div class="chart-container">
+<div class="chart-header">
+<h3>Monthly Emissions Trend</h3>
+</div>
+<div class="chart-wrapper" style="position: relative; height: 300px;">
+<canvas id="trendChart"></canvas>
+</div>
+</div>
+</div>
+<!-- Categories Chart -->
+<div class="chart-container full-width">
+<div class="chart-header">
+<h3>Emissions by Category</h3>
+</div>
+<div class="chart-wrapper" style="position: relative; height: 300px;">
+<canvas id="categoryChart"></canvas>
+</div>
+</div>
+<!-- Recent Activity and Quick Actions -->
+<div class="dashboard-bottom">
+<div class="activity-feed">
+<h3>Recent Activity</h3>
+<div class="activity-list">
+<div class="activity-item">
+<div class="activity-icon report">📄</div>
+<div class="activity-content">
+<div class="activity-text">Monthly emissions report generated</div>
+<div class="activity-time">Sep 18, 2025</div>
+</div>
+</div>
+<div class="activity-item">
+<div class="activity-icon insight">💡</div>
+<div class="activity-content">
+<div class="activity-text">AI detected 12% efficiency improvement opportunity</div>
+<div class="activity-time">Sep 17, 2025</div>
+</div>
+</div>
+<div class="activity-item">
+<div class="activity-icon upload">📁</div>
+<div class="activity-content">
+<div class="activity-text">Electricity bill processed and categorized</div>
+<div class="activity-time">Sep 16, 2025</div>
+</div>
+</div>
+<div class="activity-item">
+<div class="activity-icon integration">🔗</div>
+<div class="activity-content">
+<div class="activity-text">Transportation data uploaded via API</div>
+<div class="activity-time">Sep 15, 2025</div>
+</div>
+</div>
+<div class="activity-item">
+<div class="activity-icon offset">🌱</div>
+<div class="activity-content">
+<div class="activity-text">Offset purchase completed: 500 tCO₂e</div>
+<div class="activity-time">Sep 14, 2025</div>
+</div>
+</div>
+</div>
+</div>
+<div class="quick-actions">
+<h3>Quick Actions</h3>
+<button class="btn btn--primary" data-goto-section="upload">Upload New Data</button>
+<button class="btn btn--outline" data-goto-section="recommendations">View Recommendations</button>
+<button class="btn btn--outline" data-action="generate-report">Generate Report</button>
+<button class="btn btn--secondary" data-action="schedule-ai">Schedule AI Analysis</button>
+</div>
+</div>
+</section>
+<!-- Upload Data Section -->
+<section class="section" id="upload">
+<div class="section-header">
+<h2>AI-Powered Data Upload</h2>
+<p>Upload your documents and let our AI extract and categorize emissions data automatically</p>
+</div>
+<div class="upload-container">
+<div class="upload-zone" id="uploadZone">
+<div class="upload-icon">📄</div>
+<h3>Drag &amp; drop files here</h3>
+<p>or click to browse</p>
+<div class="supported-formats">
+<span class="format-tag">PDF</span>
+<span class="format-tag">Excel</span>
+<span class="format-tag">CSV</span>
+<span class="format-tag">Images</span>
+</div>
+<input accept=".pdf,.xlsx,.xls,.csv,.png,.jpg,.jpeg" hidden="" id="fileInput" multiple="" type="file"/>
+</div>
+<div class="processing-section" id="processingSection" style="display: none;">
+<h3>AI Processing Status</h3>
+<div class="processing-item">
+<div class="file-info">
+<span class="file-name">electricity-bill-sept-2025.pdf</span>
+<span class="file-size">2.4 MB</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+<div class="processing-status" id="processingStatus">Analyzing document...</div>
+</div>
+</div>
+<div class="extraction-results" id="extractionResults" style="display: none;">
+<h3>AI Extraction Results</h3>
+<div class="result-card">
+<div class="result-header">
+<h4>Document: Electricity Bill - September 2025</h4>
+<span class="confidence-score">96% Confidence</span>
+</div>
+<div class="extracted-data">
+<div class="data-point">
+<span class="label">Energy Consumption:</span>
+<span class="value">45,230 kWh</span>
+</div>
+<div class="data-point">
+<span class="label">CO₂ Emissions:</span>
+<span class="value">32.4 tonnes</span>
+</div>
+<div class="data-point">
+<span class="label">Category:</span>
+<span class="value">Scope 2 - Purchased Electricity</span>
+</div>
+<div class="data-point">
+<span class="label">Location:</span>
+<span class="value">Bangalore Facility</span>
+</div>
+</div>
+<div class="result-actions">
+<button class="btn btn--primary">Approve &amp; Add</button>
+<button class="btn btn--outline">Review Details</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="upload-history">
+<h3>Upload History</h3>
+<div class="history-table">
+<div class="table-row header">
+<div class="col">File Name</div>
+<div class="col">Date Uploaded</div>
+<div class="col">Status</div>
+<div class="col">CO₂ Extracted</div>
+<div class="col">Actions</div>
+</div>
+<div class="table-row">
+<div class="col">transportation-invoice-aug-2025.pdf</div>
+<div class="col">Sep 15, 2025</div>
+<div class="col"><span class="status status--success">Processed</span></div>
+<div class="col">156.7 tonnes</div>
+<div class="col"><button class="btn btn--sm btn--outline">View Details</button></div>
+</div>
+<div class="table-row">
+<div class="col">energy-audit-2025.xlsx</div>
+<div class="col">Sep 12, 2025</div>
+<div class="col"><span class="status status--success">Processed</span></div>
+<div class="col">89.3 tonnes</div>
+<div class="col"><button class="btn btn--sm btn--outline">View Details</button></div>
+</div>
+<div class="table-row">
+<div class="col">waste-management-report.csv</div>
+<div class="col">Sep 10, 2025</div>
+<div class="col"><span class="status status--warning">Review Required</span></div>
+<div class="col">23.1 tonnes</div>
+<div class="col"><button class="btn btn--sm btn--primary">Review</button></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recommendations Section -->
+<section class="section" id="recommendations">
+<div class="section-header">
+<h2>AI-Generated Recommendations</h2>
+<p>Personalized carbon reduction strategies with ROI calculations</p>
+</div>
+<div class="recommendations-grid">
+<div class="recommendation-card high-priority">
+<div class="priority-badge high">High Priority</div>
+<h3>LED Lighting Upgrade</h3>
+<div class="category">Energy Efficiency</div>
+<p>Install LED lighting across all facilities to reduce electricity consumption by 15%</p>
+<div class="metrics-row">
+<div class="metric">
+<span class="label">Investment</span>
+<span class="value">$125,000</span>
+</div>
+<div class="metric">
+<span class="label">Annual Savings</span>
+<span class="value">$280,000</span>
+</div>
+<div class="metric">
+<span class="label">Payback</span>
+<span class="value">5.4 months</span>
+</div>
+<div class="metric">
+<span class="label">CO₂ Reduction</span>
+<span class="value">487.2 tonnes</span>
+</div>
+</div>
+<button class="btn btn--primary btn--full-width" data-action="implement">Implement Strategy</button>
+</div>
+<div class="recommendation-card high-priority">
+<div class="priority-badge high">High Priority</div>
+<h3>Solar Panel Installation</h3>
+<div class="category">Renewable Energy</div>
+<p>Solar panel installation on Bangalore facility to generate 35% of facility energy from renewable sources</p>
+<div class="metrics-row">
+<div class="metric">
+<span class="label">Investment</span>
+<span class="value">$450,000</span>
+</div>
+<div class="metric">
+<span class="label">Annual Savings</span>
+<span class="value">$95,000</span>
+</div>
+<div class="metric">
+<span class="label">Payback</span>
+<span class="value">4.7 years</span>
+</div>
+<div class="metric">
+<span class="label">CO₂ Reduction</span>
+<span class="value">1,136.7 tonnes</span>
+</div>
+</div>
+<button class="btn btn--primary btn--full-width" data-action="implement">Implement Strategy</button>
+</div>
+<div class="recommendation-card medium-priority">
+<div class="priority-badge medium">Medium Priority</div>
+<h3>Electric Vehicle Fleet</h3>
+<div class="category">Transportation</div>
+<p>Transition to electric vehicle fleet to achieve 60% reduction in fleet emissions</p>
+<div class="metrics-row">
+<div class="metric">
+<span class="label">Investment</span>
+<span class="value">$320,000</span>
+</div>
+<div class="metric">
+<span class="label">Annual Savings</span>
+<span class="value">$45,000</span>
+</div>
+<div class="metric">
+<span class="label">Payback</span>
+<span class="value">7.1 years</span>
+</div>
+<div class="metric">
+<span class="label">CO₂ Reduction</span>
+<span class="value">1,111.4 tonnes</span>
+</div>
+</div>
+<button class="btn btn--outline btn--full-width">Learn More</button>
+</div>
+<div class="recommendation-card low-priority">
+<div class="priority-badge low">Low Priority</div>
+<h3>Recycling Program</h3>
+<div class="category">Waste Management</div>
+<p>Implement comprehensive recycling program to achieve 40% waste reduction</p>
+<div class="metrics-row">
+<div class="metric">
+<span class="label">Investment</span>
+<span class="value">$25,000</span>
+</div>
+<div class="metric">
+<span class="label">Annual Savings</span>
+<span class="value">$18,000</span>
+</div>
+<div class="metric">
+<span class="label">Payback</span>
+<span class="value">1.4 years</span>
+</div>
+<div class="metric">
+<span class="label">CO₂ Reduction</span>
+<span class="value">217.5 tonnes</span>
+</div>
+</div>
+<button class="btn btn--outline btn--full-width">Learn More</button>
+</div>
+</div>
+<!-- Carbon Offset Marketplace -->
+<div class="offset-marketplace">
+<h3>Carbon Offset Marketplace</h3>
+<div class="offset-projects">
+<div class="offset-card">
+<div class="offset-header">
+<h4>Rajasthan Wind Farm</h4>
+<div class="rating">AAA</div>
+</div>
+<div class="offset-details">
+<p>Large-scale wind energy project reducing grid emissions</p>
+<div class="offset-info">
+<span>📍 India</span>
+<span>🔒 Gold Standard</span>
+<span>💨 Renewable Energy</span>
+</div>
+</div>
+<div class="offset-pricing">
+<span class="price">$12/tCO₂e</span>
+<span class="available">50,000 tonnes available</span>
+</div>
+<button class="btn btn--primary" data-action="buy-offset">Purchase Offsets</button>
+</div>
+<div class="offset-card">
+<div class="offset-header">
+<h4>Kerala Reforestation</h4>
+<div class="rating">AA+</div>
+</div>
+<div class="offset-details">
+<p>Community-based forest restoration project</p>
+<div class="offset-info">
+<span>📍 India</span>
+<span>🔒 VCS</span>
+<span>🌳 Forestry</span>
+</div>
+</div>
+<div class="offset-pricing">
+<span class="price">$8/tCO₂e</span>
+<span class="available">25,000 tonnes available</span>
+</div>
+<button class="btn btn--primary" data-action="buy-offset">Purchase Offsets</button>
+</div>
+<div class="offset-card">
+<div class="offset-header">
+<h4>Biogas Plant Gujarat</h4>
+<div class="rating">AA</div>
+</div>
+<div class="offset-details">
+<p>Converting agricultural waste to clean energy</p>
+<div class="offset-info">
+<span>📍 India</span>
+<span>🔒 CDM</span>
+<span>♻️ Waste Management</span>
+</div>
+</div>
+<div class="offset-pricing">
+<span class="price">$15/tCO₂e</span>
+<span class="available">15,000 tonnes available</span>
+</div>
+<button class="btn btn--primary" data-action="buy-offset">Purchase Offsets</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Reports Section -->
+<section class="section" id="reports">
+<div class="section-header">
+<h2>Compliance Reports</h2>
+<p>Generate comprehensive reports for various compliance frameworks</p>
+</div>
+<div class="report-generator">
+<div class="generator-card">
+<h3>Generate New Report</h3>
+<form class="report-form">
+<div class="form-group">
+<label class="form-label">Reporting Framework</label>
+<select class="form-control" id="frameworkSelect">
+<option value="gri">GRI Standards</option>
+<option value="cdp">CDP Climate</option>
+<option value="tcfd">TCFD</option>
+<option value="sbti">SBTi</option>
+<option value="iso">ISO 14064</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">Reporting Period</label>
+<select class="form-control">
+<option value="2025">2025 (Current)</option>
+<option value="2024">2024</option>
+<option value="2023">2023</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">Report Type</label>
+<select class="form-control">
+<option value="annual">Annual Report</option>
+<option value="quarterly">Quarterly Report</option>
+<option value="custom">Custom Report</option>
+</select>
+</div>
+<button class="btn btn--primary btn--full-width" data-action="generate-report" type="button">Generate Report</button>
+</form>
+</div>
+<div class="compliance-status">
+<h3>Framework Compliance Status</h3>
+<div class="compliance-grid">
+<div class="compliance-item">
+<div class="framework-name">GRI Standards</div>
+<span class="status status--success">Compliant</span>
+<div class="last-updated">Updated Sep 2025</div>
+</div>
+<div class="compliance-item">
+<div class="framework-name">CDP Climate</div>
+<span class="status status--warning">In Progress</span>
+<div class="last-updated">Updated Aug 2025</div>
+</div>
+<div class="compliance-item">
+<div class="framework-name">TCFD</div>
+<span class="status status--success">Compliant</span>
+<div class="last-updated">Updated Sep 2025</div>
+</div>
+<div class="compliance-item">
+<div class="framework-name">SBTi</div>
+<span class="status status--info">Pending</span>
+<div class="last-updated">Updated Jul 2025</div>
+</div>
+<div class="compliance-item">
+<div class="framework-name">ISO 14064</div>
+<span class="status status--success">Compliant</span>
+<div class="last-updated">Updated Aug 2025</div>
+</div>
+</div>
+</div>
+</div>
+<div class="report-history">
+<h3>Generated Reports</h3>
+<div class="history-table">
+<div class="table-row header">
+<div class="col">Report Name</div>
+<div class="col">Framework</div>
+<div class="col">Generated</div>
+<div class="col">Status</div>
+<div class="col">Actions</div>
+</div>
+<div class="table-row">
+<div class="col">Annual Carbon Report 2025</div>
+<div class="col">GRI Standards</div>
+<div class="col">Sep 18, 2025</div>
+<div class="col"><span class="status status--success">Ready</span></div>
+<div class="col">
+<button class="btn btn--sm btn--outline">Download PDF</button>
+<button class="btn btn--sm btn--secondary">Share</button>
+</div>
+</div>
+<div class="table-row">
+<div class="col">Q3 2025 Climate Disclosure</div>
+<div class="col">CDP Climate</div>
+<div class="col">Sep 15, 2025</div>
+<div class="col"><span class="status status--warning">In Review</span></div>
+<div class="col">
+<button class="btn btn--sm btn--outline">Preview</button>
+<button class="btn btn--sm btn--primary">Complete Review</button>
+</div>
+</div>
+<div class="table-row">
+<div class="col">TCFD Risk Assessment 2025</div>
+<div class="col">TCFD</div>
+<div class="col">Sep 12, 2025</div>
+<div class="col"><span class="status status--success">Ready</span></div>
+<div class="col">
+<button class="btn btn--sm btn--outline">Download PDF</button>
+<button class="btn btn--sm btn--secondary">Share</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Report Generation Modal -->
+<div class="modal hidden" id="reportModal">
+<div class="modal-content">
+<div class="modal-header">
+<h3>Generating Report...</h3>
+<button class="modal-close" data-action="close-modal">×</button>
+</div>
+<div class="modal-body">
+<div class="report-progress">
+<div class="progress-step active">
+<div class="step-icon">✓</div>
+<div class="step-text">Collecting emissions data</div>
+</div>
+<div class="progress-step active">
+<div class="step-icon">✓</div>
+<div class="step-text">AI analysis and categorization</div>
+</div>
+<div class="progress-step active">
+<div class="step-icon">⏳</div>
+<div class="step-text">Generating compliance report</div>
+</div>
+<div class="progress-step">
+<div class="step-icon">◯</div>
+<div class="step-text">Quality validation</div>
+</div>
+</div>
+<div class="progress-bar-modal">
+<div class="progress-fill-modal" id="modalProgressFill"></div>
+</div>
+<div class="progress-text">Processing... 65% complete</div>
+</div>
+</div>
+</div>
+<script src="app.js"></script>
 </body>
 </html>
