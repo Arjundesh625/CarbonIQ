@@ -1,14 +1,3 @@
-"""
-CarbonIQ AI - Enterprise Carbon Accounting Platform
-Backend Application Package
-
-This module initializes the core CarbonIQ application logic, 
-providing the infrastructure for GHG emission processing, 
-AI-powered document extraction, and sustainability reporting.
-"""
-
-__version__ = "1.0.0"
-__author__ = "CarbonIQ AI Engineering"
 /* CarbonIQ AI Application - Debugged & Refactored
    - Robust DOM guards
    - Chart.js availability checks
